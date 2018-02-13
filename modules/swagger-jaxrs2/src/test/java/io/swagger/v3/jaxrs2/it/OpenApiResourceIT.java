@@ -111,7 +111,7 @@ public class OpenApiResourceIT extends AbstractAnnotationTest {
     @BeforeMethod
     public void checkJetty() {
         if (jettyPort == -1) {
-            //throw new SkipException("Jetty not configured");
+            throw new SkipException("Jetty not configured");
         }
     }
 

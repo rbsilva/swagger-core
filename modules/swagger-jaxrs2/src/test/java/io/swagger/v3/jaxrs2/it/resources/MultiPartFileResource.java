@@ -14,7 +14,8 @@ public class MultiPartFileResource {
     @POST
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(@FormDataParam("fileId") final String fileId, @FormDataParam("file") final InputStream file) {
+    public Response uploadFile(@FormDataParam("fileId") final String fileId,
+                               @FormDataParam("file") final InputStream file) {
         return Response.status(200).entity("File  " + fileId + " has been uploaded").build();
     }
 }
