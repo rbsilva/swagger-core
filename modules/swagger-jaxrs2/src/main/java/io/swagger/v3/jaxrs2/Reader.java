@@ -113,6 +113,8 @@ public class Reader implements OpenApiReader {
 
     /**
      * Scans a single class for Swagger annotations - does not invoke ReaderListeners
+     * @param cls class
+     * @return OpenAPI openAPI
      */
     public OpenAPI read(Class<?> cls) {
         return read(cls, resolveApplicationPath(), null, false, null, null, new LinkedHashSet<String>(), new ArrayList<Parameter>(), new HashSet<Class<?>>());

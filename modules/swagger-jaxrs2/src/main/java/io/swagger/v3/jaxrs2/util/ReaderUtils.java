@@ -38,9 +38,10 @@ public class ReaderUtils {
     /**
      * Collects constructor-level parameters from class.
      *
-     * @param cls        is a class for collecting
-     * @param components
-     * @return the collection of supported parameters
+     * @param cls is a class for collecting
+     * @param components components
+     * @param classConsumes classConsumes
+     * @return List the collection of supported parameters
      */
     public static List<Parameter> collectConstructorParameters(Class<?> cls, Components components, javax.ws.rs.Consumes classConsumes) {
         if (cls.isLocalClass() || (cls.isMemberClass() && !Modifier.isStatic(cls.getModifiers()))) {
@@ -97,8 +98,9 @@ public class ReaderUtils {
     /**
      * Collects field-level parameters from class.
      *
-     * @param cls        is a class for collecting
-     * @param components
+     * @param cls is a class for collecting
+     * @param components components
+     * @param classConsumes classConsumes
      * @return the collection of supported parameters
      */
     public static List<Parameter> collectFieldParameters(Class<?> cls, Components components, javax.ws.rs.Consumes classConsumes) {

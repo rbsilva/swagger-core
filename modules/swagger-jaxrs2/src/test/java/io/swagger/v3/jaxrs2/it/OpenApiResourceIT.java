@@ -16,63 +16,199 @@ import static com.jayway.restassured.RestAssured.given;
  * sample app just prior to the integration-test phase starting.
  */
 public class OpenApiResourceIT extends AbstractAnnotationTest {
-    private static final String EXPECTED_JSON = "{\n" +
-            "    \"openapi\": \"3.0.1\",\n" +
-            "    \"paths\": {\n" +
-            "        \"/widgets/{widgetId}\": {\n" +
-            "            \"get\": {\n" +
-            "                \"tags\": [\n" +
-            "                    \"widgets\"\n" +
-            "                ],\n" +
-            "                \"summary\": \"Find pet by ID\",\n" +
-            "                \"description\": \"Returns a pet when ID <= 10.  ID > 10 or nonintegers will simulate API error conditions\",\n" +
-            "                \"operationId\": \"getWidget\",\n" +
-            "                \"parameters\": [\n" +
-            "                    {\n" +
-            "                        \"name\": \"widgetId\",\n" +
-            "                        \"in\": \"path\",\n" +
-            "                        \"required\": true,\n" +
-            "                        \"schema\": {\n" +
-            "                            \"type\": \"string\"\n" +
-            "                        }\n" +
-            "                    }\n" +
-            "                ],\n" +
-            "                \"responses\": {\n" +
-            "                    \"200\": {\n" +
-            "                        \"description\": \"Returns widget with matching id\",\n" +
-            "                        \"content\": {\n" +
-            "                            \"application/json\": {\n" +
-            "                                \"schema\": {\n" +
-            "                                    \"$ref\": \"#/components/schemas/Widget\"\n" +
-            "                                }\n" +
-            "                            }\n" +
-            "                        }\n" +
-            "                    }\n" +
-            "                }\n" +
+    private static final String EXPECTED_JSON = "{  \n" +
+            "   \"openapi\":\"3.0.1\",\n" +
+            "   \"paths\":{  \n" +
+            "      \"/files/upload\":{  \n" +
+            "         \"post\":{  \n" +
+            "            \"operationId\":\"uploadFile\",\n" +
+            "            \"requestBody\":{  \n" +
+            "               \"content\":{  \n" +
+            "                  \"multipart/form-data\":{  \n" +
+            "                     \"schema\":{  \n" +
+            "                        \"type\":\"string\"\n" +
+            "                     }\n" +
+            "                  }\n" +
+            "               }\n" +
+            "            },\n" +
+            "            \"responses\":{  \n" +
+            "               \"default\":{  \n" +
+            "                  \"description\":\"default response\",\n" +
+            "                  \"content\":{  \n" +
+            "                     \"*/*\":{  \n" +
+            "\n" +
+            "                     }\n" +
+            "                  }\n" +
+            "               }\n" +
             "            }\n" +
-            "        }\n" +
-            "    },\n" +
-            "    \"components\": {\n" +
-            "        \"schemas\": {\n" +
-            "            \"Widget\": {\n" +
-            "                \"type\": \"object\",\n" +
-            "                \"properties\": {\n" +
-            "                    \"a\": {\n" +
-            "                        \"type\": \"string\"\n" +
-            "                    },\n" +
-            "                    \"b\": {\n" +
-            "                        \"type\": \"string\"\n" +
-            "                    },\n" +
-            "                    \"id\": {\n" +
-            "                        \"type\": \"string\"\n" +
-            "                    }\n" +
-            "                }\n" +
+            "         }\n" +
+            "      },\n" +
+            "      \"/files/attach\":{  \n" +
+            "         \"put\":{  \n" +
+            "            \"operationId\":\"putFile\",\n" +
+            "            \"parameters\":[  \n" +
+            "               {  \n" +
+            "                  \"name\":\"fileId\",\n" +
+            "                  \"in\":\"form\",\n" +
+            "                  \"schema\":{  \n" +
+            "                     \"type\":\"string\"\n" +
+            "                  }\n" +
+            "               }\n" +
+            "            ],\n" +
+            "            \"responses\":{  \n" +
+            "               \"default\":{  \n" +
+            "                  \"description\":\"default response\",\n" +
+            "                  \"content\":{  \n" +
+            "                     \"application/octet-stream\":{  \n" +
+            "\n" +
+            "                     }\n" +
+            "                  }\n" +
+            "               }\n" +
             "            }\n" +
-            "        }\n" +
-            "    }\n" +
+            "         }\n" +
+            "      },\n" +
+            "      \"/users/add\":{  \n" +
+            "         \"post\":{  \n" +
+            "            \"operationId\":\"addUser\",\n" +
+            "            \"parameters\":[  \n" +
+            "               {  \n" +
+            "                  \"name\":\"id\",\n" +
+            "                  \"in\":\"form\",\n" +
+            "                  \"schema\":{  \n" +
+            "                     \"type\":\"string\"\n" +
+            "                  }\n" +
+            "               },\n" +
+            "               {  \n" +
+            "                  \"name\":\"name\",\n" +
+            "                  \"in\":\"form\",\n" +
+            "                  \"schema\":{  \n" +
+            "                     \"type\":\"string\"\n" +
+            "                  }\n" +
+            "               },\n" +
+            "               {  \n" +
+            "                  \"name\":\"gender\",\n" +
+            "                  \"in\":\"form\",\n" +
+            "                  \"schema\":{  \n" +
+            "                     \"type\":\"string\"\n" +
+            "                  }\n" +
+            "               }\n" +
+            "            ],\n" +
+            "            \"responses\":{  \n" +
+            "               \"default\":{  \n" +
+            "                  \"description\":\"default response\",\n" +
+            "                  \"content\":{  \n" +
+            "                     \"*/*\":{  \n" +
+            "\n" +
+            "                     }\n" +
+            "                  }\n" +
+            "               }\n" +
+            "            }\n" +
+            "         }\n" +
+            "      },\n" +
+            "      \"/widgets/{widgetId}\":{  \n" +
+            "         \"get\":{  \n" +
+            "            \"tags\":[  \n" +
+            "               \"widgets\"\n" +
+            "            ],\n" +
+            "            \"summary\":\"Find pet by ID\",\n" +
+            "            \"description\":\"Returns a pet when ID <= 10.  ID > 10 or nonintegers will simulate API error conditions\",\n" +
+            "            \"operationId\":\"getWidget\",\n" +
+            "            \"parameters\":[  \n" +
+            "               {  \n" +
+            "                  \"name\":\"widgetId\",\n" +
+            "                  \"in\":\"path\",\n" +
+            "                  \"required\":true,\n" +
+            "                  \"schema\":{  \n" +
+            "                     \"type\":\"string\"\n" +
+            "                  }\n" +
+            "               }\n" +
+            "            ],\n" +
+            "            \"responses\":{  \n" +
+            "               \"200\":{  \n" +
+            "                  \"description\":\"Returns widget with matching id\",\n" +
+            "                  \"content\":{  \n" +
+            "                     \"application/json\":{  \n" +
+            "                        \"schema\":{  \n" +
+            "                           \"$ref\":\"#/components/schemas/Widget\"\n" +
+            "                        }\n" +
+            "                     }\n" +
+            "                  }\n" +
+            "               }\n" +
+            "            }\n" +
+            "         }\n" +
+            "      }\n" +
+            "   },\n" +
+            "   \"components\":{  \n" +
+            "      \"schemas\":{  \n" +
+            "         \"InputStream\":{  \n" +
+            "            \"type\":\"object\"\n" +
+            "         },\n" +
+            "         \"Widget\":{  \n" +
+            "            \"type\":\"object\",\n" +
+            "            \"properties\":{  \n" +
+            "               \"a\":{  \n" +
+            "                  \"type\":\"string\"\n" +
+            "               },\n" +
+            "               \"b\":{  \n" +
+            "                  \"type\":\"string\"\n" +
+            "               },\n" +
+            "               \"id\":{  \n" +
+            "                  \"type\":\"string\"\n" +
+            "               }\n" +
+            "            }\n" +
+            "         }\n" +
+            "      }\n" +
+            "   }\n" +
             "}";
     private static final String EXPECTED_YAML = "openapi: 3.0.1\n" +
             "paths:\n" +
+            "  /files/upload:\n" +
+            "    post:\n" +
+            "      operationId: uploadFile\n" +
+            "      requestBody:\n" +
+            "        content:\n" +
+            "          multipart/form-data:\n" +
+            "            schema:\n" +
+            "              type: string\n" +
+            "      responses:\n" +
+            "        default:\n" +
+            "          description: default response\n" +
+            "          content:\n" +
+            "            '*/*': {}\n" +
+            "  /files/attach:\n" +
+            "    put:\n" +
+            "      operationId: putFile\n" +
+            "      parameters:\n" +
+            "      - name: fileId\n" +
+            "        in: form\n" +
+            "        schema:\n" +
+            "          type: string\n" +
+            "      responses:\n" +
+            "        default:\n" +
+            "          description: default response\n" +
+            "          content:\n" +
+            "            application/octet-stream: {}\n" +
+            "  /users/add:\n" +
+            "    post:\n" +
+            "      operationId: addUser\n" +
+            "      parameters:\n" +
+            "      - name: id\n" +
+            "        in: form\n" +
+            "        schema:\n" +
+            "          type: string\n" +
+            "      - name: name\n" +
+            "        in: form\n" +
+            "        schema:\n" +
+            "          type: string\n" +
+            "      - name: gender\n" +
+            "        in: form\n" +
+            "        schema:\n" +
+            "          type: string\n" +
+            "      responses:\n" +
+            "        default:\n" +
+            "          description: default response\n" +
+            "          content:\n" +
+            "            '*/*': {}\n" +
             "  /widgets/{widgetId}:\n" +
             "    get:\n" +
             "      tags:\n" +
@@ -96,6 +232,8 @@ public class OpenApiResourceIT extends AbstractAnnotationTest {
             "                $ref: '#/components/schemas/Widget'\n" +
             "components:\n" +
             "  schemas:\n" +
+            "    InputStream:\n" +
+            "      type: object\n" +
             "    Widget:\n" +
             "      type: object\n" +
             "      properties:\n" +
@@ -126,7 +264,7 @@ public class OpenApiResourceIT extends AbstractAnnotationTest {
                 .log().all()
                 .assertThat()
                 .statusCode(503)
-                .contentType(ContentType.JSON)
+                .contentType("text/html;charset=iso-8859-1")
                 .extract()
                 .response().body().asString();
 

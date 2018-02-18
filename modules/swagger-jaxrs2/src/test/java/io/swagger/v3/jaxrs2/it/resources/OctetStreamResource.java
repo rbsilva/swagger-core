@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/files")
+@Produces("application/json")
 public class OctetStreamResource {
     @PUT
     @Path("/attach")
